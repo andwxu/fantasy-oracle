@@ -1,0 +1,218 @@
+img {
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    background-color: #edf0df;
+}
+
+.player {
+    font-family: "Syne", sans-serif;
+    text-align: center;
+    font-weight: 10px;
+    width: 130px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+}
+
+.player div {
+    height: 50%;
+    width: 100%;
+    font-size: 16px;
+}
+
+.name {
+    background-color: #45005a;
+    color: white;
+    padding-top: 3px;
+}
+
+.team {
+    background-color: #3cf335;
+}
+
+.player-0 {
+    left: 258px;
+    top: 100px;
+}
+
+.player-1 {
+    left: 70px;
+    top: 210px;
+}
+
+.player-2 {
+    left: 258px;
+    top: 210px;
+}
+
+.player-3 {
+    left: 446px;
+    top: 210px;
+}
+
+.player-4 {
+    left: 40px;
+    top: 310px;
+}
+
+.player-5 {
+    left: 185px;
+    top: 310px;
+}
+
+.player-6 {
+    left: 330px;
+    top: 310px;
+}
+
+.player-7 {
+    left: 475px;
+    top: 310px;
+}
+
+.player-8 {
+    left: 70px;
+    top: 410px;
+}
+
+.player-9 {
+    left: 258px;
+    top: 410px;
+}
+
+.player-10 {
+    left: 446px;
+    top: 410px;
+}
+
+.player-table {
+    left: 700px;
+    top: 140px;
+    position: absolute;
+    font-family: "Syne", sans-serif;
+}
+
+.player-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 5px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.player-table .table-name {
+    min-width: 80px;
+}
+
+.pagination {
+    left: 660px;
+    top: 80px;
+    position: absolute;
+    display: flex;
+}
+
+.pagination > ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.pagination button {
+    cursor: pointer;
+    outline: 0;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: #999999;
+    border-color: #999999;
+}
+
+.pagination button:hover {
+    color: #fff;
+    background-color: #999999;
+    border-color: #999999;
+}
+
+.pagination .selected{
+    background-color: #777777;
+    color: white;
+}
+
+.pagination .selected:hover {
+    color: #999999;
+    background-color: #bdbdbd;
+    border-color: #bdbdbd;
+}
+
+.switch-field {
+	display: flex;
+	margin-bottom: 36px;
+	overflow: hidden;
+    position: absolute;
+    left: 700px;
+    top: 5px;
+}
+
+.switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	background-color: #e4e4e4;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 32px;
+	line-height: 1;
+	text-align: center;
+	padding: 16px 24px;
+	margin-right: -1px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+	transition: all 0.1s ease-in-out;
+    font-family: "Syne", sans-serif;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+	background-color: #a5dc86;
+	box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+	border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+	border-radius: 0 4px 4px 0;
+}
+
+.pick {
+    border-radius: 100%;
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.pick:hover {
+    background-color: #046b45;
+}
