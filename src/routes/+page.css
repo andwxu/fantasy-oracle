@@ -113,6 +113,62 @@ img {
     min-width: 80px;
 }
 
+.bench-player {
+    font-family: "Syne", sans-serif;
+    text-align: center;
+    font-weight: 10px;
+    width: 130px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+}
+
+.bench-player div {
+    height: 50%;
+    width: 100%;
+    font-size: 16px;
+}
+
+.bench-name {
+    background-color: #3f243b;
+    color: rgb(184, 184, 184);
+    padding-top: 3px;
+}
+
+.bench-team {
+    background-color: #2a4731;
+    color: rgb(184, 184, 184);
+}
+
+.bench-player-0 {
+    left: 40px;
+    bottom: 250px;
+}
+
+.bench-player-1 {
+    left: 185px;
+    bottom: 250px;
+}
+
+.bench-player-2 {
+    left: 330px;
+    bottom: 250px;
+}
+
+.bench-player-3 {
+    left: 475px;
+    bottom: 250px;
+}
+
+.bench-title {
+    position: absolute;
+    color: #3f243b;
+    bottom: 290px;
+    left: 285px;
+    font-size: 20px;
+    font-family: "Syne", sans-serif;
+}
+
 .pagination {
     left: 660px;
     top: 80px;
@@ -183,7 +239,7 @@ img {
 	font-size: 32px;
 	line-height: 1;
 	text-align: center;
-	padding: 16px 24px;
+	padding: 16px 26px;
 	margin-right: -1px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
@@ -228,6 +284,56 @@ img {
 
 .pick.selected:hover {
     background-color: #8e00b9;
+}
+
+.bench {
+    border-radius: 3px;
+    background-color: #a9bbaa;
+    border: none;
+    color: white;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    transition: 0.3s;
+    text-align: center;
+    padding: 0;
+}
+
+.bench:hover {
+    background-color: #656e65;
+}
+
+.bench.selected {
+    background-color: #936e9e;
+}
+
+.bench.selected:hover {
+    background-color: #4d3953;
+}
+
+.stats {
+    border-radius: 3px;
+    background-color: #a9bbaa;
+    border: none;
+    color: white;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    transition: 0.3s;
+    text-align: center;
+    padding: 0;
+}
+
+.stats:hover {
+    background-color: #646e65;
+}
+
+.stats.selected{
+    background-color: #17411c;
+}
+
+.stats.selected:hover {
+    background-color: #4bbd56;
 }
 
 .run-algo {
@@ -298,4 +404,55 @@ img {
     font-family: "Syne", sans-serif;
     color: white;
     margin-top: 4px;
+}
+
+.stats-container {
+    font-family: "Syne", sans-serif;
+    position: absolute;
+    left: 1200px;
+    top: 0px;
+    width: 37%;
+    height: 100vh;
+    background-color: rgb(173, 158, 167);
+}
+
+.stats-name {
+    padding-left: 10px;
+    display: flex;
+    min-width: 10%;
+    padding-right: 0px;
+}
+
+.stats-position {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.stats-num {
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.stats-container > table {
+    padding-left: 2px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.club {
+    position: absolute;
+    left: 1760px;
+    top: 40px;
+    width: 150px;
+    height: 150px;
+    z-index: 5;
+}
+
+.logo {
+    position: absolute;
+    left: 1700px;
+    bottom: 0px;
+    width: 200px;
+    height: 80px;
+    z-index: 5;
 }

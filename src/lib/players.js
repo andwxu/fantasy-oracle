@@ -7,6 +7,7 @@ export default class Players {
     defs = new Array();
     mids = new Array();
     strs = new Array();
+    full_stat = new Array();
 
     /**
      * @param {any} players
@@ -14,8 +15,9 @@ export default class Players {
     constructor(players) {
         for (let i in players) {
             if (+i < 2) continue;
-            let p = new Player(players[i][1], players[i][5], players[i][11], players[i][2], +i, players[i][4]); 
+            let p = new Player(players[i][1], players[i][5], players[i][11], players[i][2], +i-2, players[i][4]); 
             this.full_list.push(p);
+            this.full_stat.push(players[i]);
 
             if (players[i][2] == "GK") this.gks.push(p);
             else if (players[i][2] == "DEF") this.defs.push(p);
@@ -36,13 +38,13 @@ export default class Players {
      * @param {any[]} selectedRoster 
      * @returns {Array<Array<any>>}
      */
-    getBest(selectedRoster) {
+    getBest(selectedRoster, budget) {
         let gk = 1;
         let def = 3;
         let mid = 4;
         let str = 3;
 
-        let usedBudget = 0;
+        // let usedBudget = 0;
 
         let reduced_list = structuredClone(this.full_list);
         for (let i in selectedRoster) {
@@ -51,14 +53,15 @@ export default class Players {
             else if (selectedRoster[i].get_group() == 2) mid--;
             else str--;
 
-            usedBudget += +selectedRoster[i].get_price();
+            // usedBudget += +selectedRoster[i].get_price();
 
             reduced_list = reduced_list.filter(e => e.name !== selectedRoster[i].name);
         }
         let possible_formations = [
             [Math.max(0, gk), Math.max(0, def), Math.max(0, mid), Math.max(0, str)]];
+            console.log(budget);
 
-        let results = bestFullTeams(reduced_list, possible_formations, 100 - usedBudget);
+        let results = bestFullTeams(reduced_list, possible_formations, budget);
         return results;
     }
 
@@ -83,5 +86,10 @@ export default class Players {
             if (this.full_list[i].name == name) return this.full_list[i];
         }
         return null;
+    }
+
+    getStats(index) {
+        console.log(this.full_stat);
+        return this.full_stat[index];
     }
 }

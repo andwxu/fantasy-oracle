@@ -58,6 +58,14 @@ export default class Player {
     get_points() {
         return this.points;
     }
+
+    get_index() {
+        return this.index;
+    }
+
+    get_team() {
+        return this.team;
+    }
 }
 
 
