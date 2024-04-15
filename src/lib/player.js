@@ -54,6 +54,10 @@ export default class Player {
     get_price() {
         return this.price;
     }
+
+    get_points() {
+        return this.points;
+    }
 }
 
 

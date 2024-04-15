@@ -31,6 +31,11 @@ export default class Players {
         this.strs.sort((a, b) => b.points - a.points);
     }
 
+    /**
+     * 
+     * @param {any[]} selectedRoster 
+     * @returns {Array<Array<any>>}
+     */
     getBest(selectedRoster) {
         let gk = 1;
         let def = 3;
@@ -39,21 +44,19 @@ export default class Players {
 
         let usedBudget = 0;
 
-        let reduced_list = structureClone(full_list);
+        let reduced_list = structuredClone(this.full_list);
         for (let i in selectedRoster) {
             if (selectedRoster[i].get_group() == 0) gk--;
             else if (selectedRoster[i].get_group() == 1) def--;
             else if (selectedRoster[i].get_group() == 2) mid--;
             else str--;
 
-            usedBudget += selectedRoster[i].get_price();
+            usedBudget += +selectedRoster[i].get_price();
 
-            let reduced_list = reduced_list.filter(e => e !== selectedRoster[i]);
+            reduced_list = reduced_list.filter(e => e.name !== selectedRoster[i].name);
         }
         let possible_formations = [
-            [Math.min(0, gk), Math.min(0, def), Math.min(0, mid), Math.min(0, str)]
-        ];
-
+            [Math.max(0, gk), Math.max(0, def), Math.max(0, mid), Math.max(0, str)]];
 
         let results = bestFullTeams(reduced_list, possible_formations, 100 - usedBudget);
         return results;
@@ -73,5 +76,12 @@ export default class Players {
 
     getStrs() {
         return this.strs;
+    }
+
+    getPlayer(name) {
+        for (let i in this.full_list) {
+            if (this.full_list[i].name == name) return this.full_list[i];
+        }
+        return null;
     }
 }

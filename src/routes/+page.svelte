@@ -4,7 +4,6 @@
     import Players from '$lib/players';
     import Player from '$lib/player';
     import { onMount } from 'svelte';
-  import { writable } from 'svelte/store';
 
     /**
      * @type {Player[]}
@@ -89,43 +88,98 @@
    */
     function onSelect(player) {
         if (selectedRoster.indexOf(player) != -1) {
+            // Roster already has player, remove them
             selectedRoster = selectedRoster.filter(e => e !== player);
+            budget += +player.get_price();
+            points -= +player.get_points();
             for (let i = 0; i < roster.length; i++) {
                 if (roster[i] === player) roster[i] = new Player("", 0, 0, "", 0, "");
             }
         } else {
-            selectedRoster.push(player);
-            let spots = [];
-            if (player.get_group() === 0) {
-                spots = [0, 1];
-            } else if (player.get_group() === 1) {
-                spots = [1, 4];
-            } else if (player.get_group() === 2) {
-                spots = [4, 8];
-            } else {
-                spots = [8, 11];
-            }
+            // Roster does not have player, add them
+            addToRoster(player);
+        }
+        // console.log(selectedRoster);
+    }
 
-            for (let i = spots[0]; i < spots[1]; i++) {
-                if (roster[i].get_price() === 0) {
-                    roster[i] = player;
-                    break;
-                }
+    /**
+     * Helper function to add player to the selected roster
+   * @param {Player} player
+   */
+    function addToRoster(player) {
+        let spots = [];
+        if (player.get_group() === 0) {
+            spots = [0, 1];
+        } else if (player.get_group() === 1) {
+            spots = [1, 4];
+        } else if (player.get_group() === 2) {
+            spots = [4, 8];
+        } else {
+            spots = [8, 11];
+        }
+        
+        let added = false;
+        for (let i = spots[0]; i < spots[1]; i++) {
+            if (roster[i].get_price() === 0) {
+                roster[i] = player;
+                added = true;
+                break;
             }
         }
-        //console.log(selectedRoster);
+        if (added) {
+            selectedRoster.push(player);
+            budget -= +player.get_price();
+            points += +player.get_points();
+        }
     }
+
+    function onRunAlgo() {
+        let ready = false;
+        for (let i = 0; i < selectedRoster.length; i++) {
+            if (selectedRoster[i].get_group() == 2) {
+                ready = true;
+                break;
+            }
+        }
+        if (ready) {
+            let additions = players.getBest(selectedRoster);
+            for (let i in additions[0][2]) {
+                console.log(additions[0][2][i]);
+                let player = Object.assign(new Player("", 0, 0, "", 0, ""), additions[0][2][i]);
+                let copiedPlayer = players.getPlayer(player.name);
+                addToRoster(copiedPlayer);
+            }
+        } else {
+            console.log('Conditions have not been met for algorithm run. Try selecting at least one midfielder.');
+        }
+    }
+
+    let budget = 100;
+    let points = 0;
 </script>
 
 <div class="container">
     <img alt="football field" src={field} /> 
+    <h1 class="budget">Budget Left</h1>
+    <div class="budget-div">
+        <h2>{budget.toFixed(2)}</h2>
+    </div>
+
+    <h1 class="points">Potential Points</h1>
+    <div class="points-div">
+        <h2>{points}</h2>
+    </div>
     {#each roster as player, i}
         <div class="player player-{i}">
             <div class="name">{player.name ?? ""}</div>
-            <div class="team"></div>
+            <div class="team">{player.team ?? ""}</div>
         </div>
     {/each}
 </div>
+
+<button class="run-algo" on:click={onRunAlgo}>
+    Forsee the Best Path
+</button>
 
 <div class="switch-field">
     <input type="radio" id="radio-three" on:change={onChange} name="switch-two" value="GK" checked/>
@@ -152,7 +206,7 @@
         <td>{row.price}</td>
         <td>{row.team}</td>
         {#if roster.indexOf(row) != -1}
-            <td><button class="pick" on:click={() => {onSelect(row)}}>-
+            <td><button class="pick selected" on:click={() => {onSelect(row)}}>-
             </button></td>
         {:else}
             <td><button class="pick" on:click={() => {onSelect(row)}}>+

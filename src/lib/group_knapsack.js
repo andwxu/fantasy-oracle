@@ -7,6 +7,7 @@ import Player from './player';
  * @param {Player[]} playersList
  */
 export default function bestFullTeams(playersList, formations, budget) {
+
     const formationScorePlayers = [];
 
     for (const formation of formations) {
@@ -15,7 +16,16 @@ export default function bestFullTeams(playersList, formations, budget) {
         // console.log(playersPoints);
         console.log('before mckp');
 
-        const [score, combResultIndexes] = knapsackMultichoiceOnepick(playersPrices, playersPoints, budget);
+        const [score, combResultIndexes] = knapsackMultichoiceOnepick(playersPrices, playersPoints, Math.floor(budget));
+        // console.log('printing important');
+        // console.log(combResultIndexes);
+
+        if (combResultIndexes.length < 4) {
+            for (let i in combResultIndexes) {
+                combResultIndexes[i][0] += 4 - combResultIndexes.length;
+            }
+        }
+        // console.log(combResultIndexes);
 
         const resultIndexes = [];
         for (const combIndex of combResultIndexes) {
@@ -45,8 +55,9 @@ export default function bestFullTeams(playersList, formations, budget) {
 }
 
 /**
- * @param {any} playersList
- * @param {any[]} formation
+ * 
+ * @param {Players[]} playersList 
+ * @param {any} formation 
  */
 function playersPreproc(playersList, formation) {
     const maxGk = formation[0];
@@ -54,17 +65,17 @@ function playersPreproc(playersList, formation) {
     const maxMid = formation[2];
     const maxAtt = formation[3];
 
-    const [gkValues, gkWeights, gkIndexes] = generateGroup(playersList, "GK");
-    const [gkCombValues, gkCombWeights, gkCombIndexes] = groupPreproc(gkValues, gkWeights, gkIndexes, maxGk);
+    const [gkValues, gkWeights, gkIndexes] = maxGk > 0 ? generateGroup(playersList, "GK") : [[], [], []];
+    const [gkCombValues, gkCombWeights, gkCombIndexes] = maxGk > 0 ? groupPreproc(gkValues, gkWeights, gkIndexes, maxGk) : [[], [], []];
 
-    const [defValues, defWeights, defIndexes] = generateGroup(playersList, "DEF");
-    const [defCombValues, defCombWeights, defCombIndexes] = groupPreproc(defValues, defWeights, defIndexes, maxDef);
+    const [defValues, defWeights, defIndexes] = maxDef > 0 ? generateGroup(playersList, "DEF") : [[], [], []];
+    const [defCombValues, defCombWeights, defCombIndexes] = maxDef > 0 ? groupPreproc(defValues, defWeights, defIndexes, maxDef) : [[], [], []];
 
-    const [midValues, midWeights, midIndexes] = generateGroup(playersList, "MID");
-    const [midCombValues, midCombWeights, midCombIndexes] = groupPreproc(midValues, midWeights, midIndexes, maxMid);
+    const [midValues, midWeights, midIndexes] = maxMid > 0 ? generateGroup(playersList, "MID") : [[], [], []];
+    const [midCombValues, midCombWeights, midCombIndexes] = maxMid > 0 ? groupPreproc(midValues, midWeights, midIndexes, maxMid) : [[], [], []];
 
-    const [attValues, attWeights, attIndexes] = generateGroup(playersList, "STR");
-    const [attCombValues, attCombWeights, attCombIndexes] = groupPreproc(attValues, attWeights, attIndexes, maxAtt);
+    const [attValues, attWeights, attIndexes] = maxAtt > 0 ? generateGroup(playersList, "STR") : [[], [], []];
+    const [attCombValues, attCombWeights, attCombIndexes] = maxAtt > 0 ? groupPreproc(attValues, attWeights, attIndexes, maxAtt) : [[], [], []];
 
     const resultCombValues = [gkCombValues, defCombValues, midCombValues, attCombValues];
     const resultCombWeights = [gkCombWeights, defCombWeights, midCombWeights, attCombWeights];
@@ -72,6 +83,7 @@ function playersPreproc(playersList, formation) {
 
     return [resultCombValues, resultCombWeights, resultCombIndexes];
 }
+
 
 /**
  * @param {string | any[]} fullList

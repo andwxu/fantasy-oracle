@@ -8,6 +8,10 @@ img {
     background-color: #edf0df;
 }
 
+.container > h2 {
+    text-align: center;
+}
+
 .player {
     font-family: "Syne", sans-serif;
     text-align: center;
@@ -211,8 +215,87 @@ img {
     color: white;
     min-width: 20px;
     min-height: 20px;
+    transition: 0.3s;
 }
 
 .pick:hover {
     background-color: #046b45;
+}
+
+.pick.selected {
+    background-color: #45005a;
+}
+
+.pick.selected:hover {
+    background-color: #8e00b9;
+}
+
+.run-algo {
+    position: absolute;
+    bottom: 30px;
+    left: 205px;
+    border: none;
+    background-color: #45005a;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 25px;
+    border-radius: 5px;
+    font-family: "Syne", sans-serif;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.run-algo:hover {
+    background-color: #77009b;
+    cursor: pointer;
+}
+
+.budget {
+    position: absolute;
+    top: -10px;
+    left: 261px;
+    font-family: "Syne", sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.budget-div > h2 {
+    font-family: "Syne", sans-serif;
+    color: white;
+    align-self: center;
+}
+
+.budget-div {
+    text-align: center;
+    position: absolute;
+    width: 100px;
+    top: 10px;
+    left: 272px;
+}
+
+.points {
+    position: absolute;
+    bottom: 130px;
+    left: 238px;
+    font-family: "Syne", sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.points-div {
+    position: absolute;
+    bottom: 96px;
+    left: 272px;
+    font-family: "Syne", sans-serif;
+    background-color: #046b45;
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.points-div > h2 {
+    font-family: "Syne", sans-serif;
+    color: white;
+    margin-top: 4px;
 }

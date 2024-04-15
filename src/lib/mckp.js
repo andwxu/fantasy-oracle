@@ -4,13 +4,19 @@
  * @param {number} maxWeight
  */
 export default function knapsackMultichoiceOnepick(weights, values, maxWeight) {
-    // console.log('beginning mckp');
-    // console.log(weights);
-    // console.log(values);
-    // console.log(maxWeight);
     if (weights.length === 0) {
         return [0, []];
     }
+
+    // console.log('before oepration');
+    // console.log(weights);
+    // console.log(values);
+    weights = weights.filter((weight, index) => weight.length > 0);
+    values = values.filter((value, index) => value.length > 0);
+    // console.log('after operation');
+    // console.log(weights);
+    // console.log(values);
+
 
     let lastArray = Array(maxWeight + 1).fill(-1);
     let lastPath = Array(maxWeight + 1).fill([]);
