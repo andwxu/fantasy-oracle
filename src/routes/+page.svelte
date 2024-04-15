@@ -149,74 +149,84 @@
         stats_player = player;
         stats = players.getStats(index);
         let clubName = player.get_team();
+        club = getClubLink(clubName);
+        console.log(club);
+    }
+
+    /**
+   * @param {string} clubName
+   */
+    function getClubLink(clubName) {
+        let clubr;
         switch (clubName) {
             case "Newcastle United":
-                club = "Newcastle-United-logo";
+                clubr = "Newcastle-United-logo";
                 break;
             case "Liverpool":
-                club = "Liverpool-FC-logo";
+                clubr = "Liverpool-FC-logo";
                 break;
             case "Arsenal":
-                club = "Arsenal-FC-logo";
+                clubr = "Arsenal-FC-logo";
                 break;
             case "Brentford":
-                club = "Brentford-FC-logo";
+                clubr = "Brentford-FC-logo";
                 break;
             case "Aston Villa":
-                club = "Aston-Villa-FC-logo";
+                clubr = "Aston-Villa-FC-logo";
                 break;
             case "B & H Albion":
-                club = "Brighton-Hove-Albion-logo";
+                clubr = "Brighton-Hove-Albion-logo";
                 break;
             case "Man United":
-                club = "Manchester-United-FC-logo";
+                clubr = "Manchester-United-FC-logo";
                 break;
             case "Fulham":
-                club = "Fulham-FC-logo";
+                clubr = "Fulham-FC-logo";
                 break;
             case "Wolverhampton":
-                club = "Wolverhampton-Wanderers-logo";
+                clubr = "Wolverhampton-Wanderers-logo";
                 break;
             case "Everton-FC-logo":
-                club = "Arsenal-FC-logo";
+                clubr = "Arsenal-FC-logo";
                 break;
             case "Tottenham":
-                club = "Tottenham-Hotspur-logo";
+                clubr = "Tottenham-Hotspur-logo";
                 break;
             case "Crystal Palace":
-                club = "Crystal-Palace-FC-logo";
+                clubr = "Crystal-Palace-FC-logo";
                 break;
             case "West Ham":
-                club = "West-Ham-United-FC-logo";
+                clubr = "West-Ham-United-FC-logo";
                 break;
             case "Chelsea":
-                club = "Chelsea-FC-logo";
+                clubr = "Chelsea-FC-logo";
                 break;
             case "Man City":
-                club = "Manchester-City-FC-logo";
+                clubr = "Manchester-City-FC-logo";
                 break;
             case "Bournemouth":
-                club = "AFC-Bournemouth-logo";
+                clubr = "AFC-Bournemouth-logo";
                 break;
             case "Nottingham Forest":
-                club = "Nottingham-Forest-FC-logo";
+                clubr = "Nottingham-Forest-FC-logo";
                 break;
             case "Sheffield United":
-                club = "sheffield";
+                clubr = "sheffield";
                 break;
             case "Luton":
-                club = "luton";
+                clubr = "luton";
                 break;
             case "Burnley":
-                club = "Burnley-logo";
+                clubr = "Burnley-logo";
                 break;
             case "Everton":
-                club = "Everton-FC-logo";
+                clubr = "Everton-FC-logo";
                 break;
             default:
-                club = "premier";
+                clubr = "premier";
                 break;
         }
+        return clubr;
     }
 
     /**
@@ -293,13 +303,13 @@
     </div>
     {#each roster as player, i}
         <div class="player player-{i}">
-            <div class="name">{player.name ?? ""}</div>
+            <div class="name"><img  class="player-team" src="src/assets/{getClubLink(player.team)}.png" alt="club" /><h4>{player.name ?? ""}</h4></div>
             <div class="team">{player.team ?? ""}</div>
         </div>
     {/each}
     {#each benchRoster as player, i}
         <div class="bench-player bench-player-{i}">
-            <div class="bench-name">{player.name ?? ""}</div>
+            <div class="bench-name"><img  class="player-team" src="src/assets/{getClubLink(player.team)}.png" alt="club" /><h4>{player.name ?? ""}</h4></div>
             <div class="bench-team">{player.team ?? ""}</div>
         </div>
     {/each}

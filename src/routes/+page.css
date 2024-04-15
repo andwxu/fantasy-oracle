@@ -25,17 +25,33 @@ img {
 .player div {
     height: 50%;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .name {
     background-color: #45005a;
     color: white;
-    padding-top: 3px;
+    padding-bottom: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player h4 {
+    margin: 0;
+    display: flex;
+    font-size: 11px;
+}
+
+.player-team {
+    width: 20px;
+    height: 20px;
 }
 
 .team {
     background-color: #3cf335;
+    align-items: center;
+    justify-content: center;
 }
 
 .player-0 {
@@ -126,13 +142,22 @@ img {
 .bench-player div {
     height: 50%;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .bench-name {
     background-color: #3f243b;
     color: rgb(184, 184, 184);
     padding-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bench-name h4 {
+    margin: 0;
+    display: flex;
+    font-size: 11px;
 }
 
 .bench-team {
