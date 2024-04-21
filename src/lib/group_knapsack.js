@@ -56,7 +56,7 @@ export default function bestFullTeams(playersList, formations, budget) {
 
 /**
  * 
- * @param {Players[]} playersList 
+ * @param {Player[]} playersList 
  * @param {any} formation 
  */
 function playersPreproc(playersList, formation) {

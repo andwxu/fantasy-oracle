@@ -30,6 +30,7 @@ export default class Player {
      * @param {number} points
      * @param {string} position
      * @param {number} index
+     * @param {string} team
      */
     constructor(name, price, points, position, index, team) {
         this.name = name;
@@ -42,6 +43,10 @@ export default class Player {
 
     toString() {
         return `${this.name} ${this.price} ${this.points} ${this.position} ${this.team}`;
+    }
+
+    get_name() {
+        return this.name;
     }
 
     get_group() {

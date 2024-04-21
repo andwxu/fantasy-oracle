@@ -269,11 +269,11 @@
             }
         }
         if (ready) {
-            let additions = players.getBest(selectedRoster, budget);
+            let additions = players.getBest(selectedRoster, benchSelectedRoster, budget);
             for (let i in additions[0][2]) {
-                console.log(additions[0][2][i]);
                 let player = Object.assign(new Player("", 0, 0, "", 0, ""), additions[0][2][i]);
-                let copiedPlayer = players.getPlayer(player.name);
+                console.log(player)
+                let copiedPlayer = players.getPlayer(player);
                 addToRoster(copiedPlayer);
             }
         } else {

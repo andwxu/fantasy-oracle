@@ -34,17 +34,16 @@ export default class Players {
     }
 
     /**
-     * 
-     * @param {any[]} selectedRoster 
+     * @param {any[]} selectedRoster
      * @returns {Array<Array<any>>}
+     * @param {number} budget
+     * @param {any[]} benchSelectedRoster
      */
-    getBest(selectedRoster, budget) {
+    getBest(selectedRoster, benchSelectedRoster, budget) {
         let gk = 1;
         let def = 3;
         let mid = 4;
         let str = 3;
-
-        // let usedBudget = 0;
 
         let reduced_list = structuredClone(this.full_list);
         for (let i in selectedRoster) {
@@ -53,14 +52,15 @@ export default class Players {
             else if (selectedRoster[i].get_group() == 2) mid--;
             else str--;
 
-            // usedBudget += +selectedRoster[i].get_price();
-
             reduced_list = reduced_list.filter(e => e.name !== selectedRoster[i].name);
+        }
+        for (let i in benchSelectedRoster) {
+            reduced_list = reduced_list.filter(e => e.name !== benchSelectedRoster[i].name);
         }
         let possible_formations = [
             [Math.max(0, gk), Math.max(0, def), Math.max(0, mid), Math.max(0, str)]];
-            console.log(budget);
 
+        console.log(possible_formations);
         let results = bestFullTeams(reduced_list, possible_formations, budget);
         return results;
     }
@@ -81,13 +81,21 @@ export default class Players {
         return this.strs;
     }
 
-    getPlayer(name) {
+    /**
+     * @param {Player} player
+     */
+    getPlayer(player) {
         for (let i in this.full_list) {
-            if (this.full_list[i].name == name) return this.full_list[i];
+            if (this.full_list[i].get_name() == player.get_name() 
+                && this.full_list[i].get_group() == player.get_group()
+                && this.full_list[i].get_team() == player.get_team()) return this.full_list[i];
         }
         return null;
     }
 
+    /**
+     * @param {number} index
+     */
     getStats(index) {
         console.log(this.full_stat);
         return this.full_stat[index];

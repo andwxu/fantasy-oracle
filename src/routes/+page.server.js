@@ -31,6 +31,7 @@ async function downloadFile() {
 
 fs.access(fileName, 0, (err) => {
     if (err) {
+        console.log('downloading file');
         downloadFile().catch(console.error);
     }
 });
